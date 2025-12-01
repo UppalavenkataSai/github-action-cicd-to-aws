@@ -1,3 +1,4 @@
+#this is a sample GitHub Actions workflow file for CI/CD with AWS Container Registry (ACR)
 name: Deploy to AWS ECR
 
 on:
@@ -30,6 +31,7 @@ jobs:
           docker build -t application .
           docker tag application:latest 009933301789.dkr.ecr.ap-south-1.amazonaws.com/application:latest
           docker push 009933301789.dkr.ecr.ap-south-1.amazonaws.com/application:latest
+          
       - name: Verify image pushed
         run: |    
           aws ecr describe-images --repository-name application --image-ids imageTag=latest 
